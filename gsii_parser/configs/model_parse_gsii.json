@@ -3,7 +3,7 @@
     "dev_data":   "../data/AMR/amr_2.0/dev.txt.features",
     "model_dir":  "../pretrained_model",
     "vocab_dir":  "vocabs",
-    "device":     "cpu",
+    "device":     "cuda:0",
     "resume_ckpt": null,
     "save_optimizer": false,
     "pretrained_file": null,
