@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import setup_run_dir    # this import tricks script to run from 2 levels up
 import os
-from   amrlib.graph_processing.annotator_v2 import annotate_file
+from   amrlib.graph_processing.annotator_v2 import annotate_file, load_annotator_model
 from   amrlib.utils.logging import silence_penman
 
 
@@ -16,8 +16,8 @@ if __name__ == '__main__':
     os.makedirs(outdir, exist_ok=True)
 
     # Load the spacy model with the desired model
-    # load_spacy('en_core_web_sm')
+    load_annotator_model("cahya/bert-base-indonesian-NER")
 
     # run the pipeline
-    for fn in ('dev.txt'):
-        annotate_file(indir, fn, outdir, fn + '.features2')
+    for fn in (['amr_indo_1.txt']):
+        annotate_file(indir, fn, outdir, fn + '.features')

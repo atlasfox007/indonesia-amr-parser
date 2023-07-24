@@ -1,5 +1,5 @@
 import torch
-from transformers import BertTokenizer, BertForTokenClassification
+from transformers import pipeline
 from nlp_id.tokenizer import Tokenizer
 from nlp_id.postag import PosTag
 from nlp_id.lemmatizer import Lemmatizer 
@@ -9,35 +9,27 @@ from nlp_id.lemmatizer import Lemmatizer
 
 id_tokenizer = Tokenizer()
 
-input_words = "Presiden Indonesia yang terakhir adalah Joko Widodo !"
-input_words = id_tokenizer.tokenize(input_words)
+input_words_1 = "Otoritas Paris, Belgium, dan Belanda"
+input_words = id_tokenizer.tokenize(input_words_1)
 print(input_words)
 
 ####################################################################
 # NER TAGGER
 
 # BERT NER Tagger
-ner_tokenizer = BertTokenizer.from_pretrained("cahya/bert-base-indonesian-NER")
-ner = BertForTokenClassification.from_pretrained("cahya/bert-base-indonesian-NER")
+# TODO : the ner results parsing logic
+ner_pipeline = pipeline("token-classification", model="cahya/bert-base-indonesian-NER")
 
-# Input sentence (array of words)
+ner_results = []
 
-# Tokenize the input sentence and get attention_mask
-tokenized_input = ner_tokenizer(" ".join(input_words), add_special_tokens=False, return_tensors="pt", padding=True, truncation=True, max_length=512)
-input_ids = tokenized_input["input_ids"]
-attention_mask = tokenized_input["attention_mask"]
+for word in input_words:
+    ner_res = ner_pipeline(word)
 
-# Predict the NER tags
-with torch.no_grad():
-    predictions = ner(input_ids, attention_mask=attention_mask)
-logits = predictions[0]
-
-active_logits = logits[attention_mask == 1] # Consider only non-padding tokens
-flattened_predictions = torch.argmax(active_logits, axis=1)
-id2label = ner.config.id2label
-
-ner_token_predictions =[id2label[i] for i in flattened_predictions.numpy()]
-print(ner_token_predictions)
+    if(len(ner_res) < 1):
+        ner_results.append('O')
+    else:
+        ner_results.append(ner_res[0]["entity"])
+print(ner_results)
 ####################################################################
 
 ####################################################################
@@ -49,6 +41,7 @@ print(pos_tag_result)
 ####################################################################
 # LEMMATIZER
 lemmatizer = Lemmatizer() 
-lemma_result = lemmatizer.lemmatize(" ".join(input_words))
-print(lemma_result.split())
+print(input_words_1)
+lemma_result = lemmatizer.lemmatize(input_words_1)
+print(lemma_result)
 ####################################################################

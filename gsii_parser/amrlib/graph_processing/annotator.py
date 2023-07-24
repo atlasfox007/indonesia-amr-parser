@@ -25,9 +25,10 @@ keep_tags=set(['id','snt'])
 start_method = None   # None (do not change) or spawn, fork, forkserver
 def annotate_file(indir, infn, outdir, outfn):
     load_spacy()
-    graphs = []
     inpath = os.path.join(indir, infn)
     entries = load_amr_entries(inpath)
+
+    graphs = []
     global start_method
     if start_method is not None:
         multiprocessing.set_start_method(start_method)  # can not be used more than once in the program.

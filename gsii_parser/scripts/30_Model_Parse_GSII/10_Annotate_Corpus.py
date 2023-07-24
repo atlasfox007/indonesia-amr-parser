@@ -9,8 +9,8 @@ from   amrlib.utils.logging import silence_penman
 # plus a few other fields for future pre/postprocessing work that may be needed.
 if __name__ == '__main__':
     silence_penman()
-    indir  = 'amrlib/data/LDC2020T02'
-    outdir = 'amrlib/data/tdata_gsii'
+    indir  = '../data/AMR/LDC2020T02'
+    outdir = '../data/AMR/LDC2020T02'
 
     # Create the processed corpus directory
     os.makedirs(outdir, exist_ok=True)
