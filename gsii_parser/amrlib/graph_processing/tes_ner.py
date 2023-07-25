@@ -1,4 +1,4 @@
 import os
 import multiprocessing
 
-print("Number of cpu: ", multiprocessing.cpu_count())
+print(multiprocessing.get_start_method())

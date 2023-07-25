@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 import setup_run_dir    # this import tricks script to run from 2 levels up
 import os
 from   amrlib.graph_processing.annotator import annotate_file, load_spacy

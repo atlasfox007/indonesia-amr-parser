@@ -20,24 +20,35 @@ tokenizer_model : Tokenizer = None
 ner_pipeline : pipeline  = None
 postag_model : PosTag = None
 lemmatizer_model : Lemmatizer = None
+ner_model_name : str = None
 
-def load_annotator_model(ner_model_name=None):
-    global ner_pipeline, tokenizer_model, postag_model, lemmatizer_model
+def load_annotator_model(model_name=None):
+    global ner_pipeline, tokenizer_model, postag_model, lemmatizer_model, ner_model_name
+    
+    ner_model_name = model_name
 
-    ner_pipeline = pipeline("token-classification", model=ner_model_name)
-    tokenizer_model = Tokenizer()
-    postag_model = PosTag()
-    lemmatizer_model = Lemmatizer()
+    if ner_pipeline is None:
+        ner_pipeline = pipeline("token-classification", model=ner_model_name)
+
+    if tokenizer_model is None:
+        tokenizer_model = Tokenizer()
+
+    if postag_model is None:
+        postag_model = PosTag()
+    
+    if lemmatizer_model is None:
+        lemmatizer_model = Lemmatizer()
 
 # Default set of tags to keep when annotating the AMR. Throw all others away
 # To keep all, redefine this to None
 keep_tags = set(['id', 'snt'])
 
 # Start Method variable
-start_method = None
+start_method = "spawn"
 
 # Annotate a file with multiple AMR entries and save it to the specified location
 def annotate_file(indir, infn, outdir, outfn):
+    load_annotator_model()
     inpath = os.path.join(indir, infn)
     entries = load_amr_entries(inpath)
 
@@ -77,7 +88,7 @@ def _process_penman(pen : penman.Graph):
     tokens = process_token(pen.metadata['snt'])
     pen.metadata['tokens']   = json.dumps(tokens)
     # NER
-    pen.metadata['ner_tags'] = json.dumps(process_ner(tokens, pen.metadata['snt']))
+    # pen.metadata['ner_tags'] = json.dumps(process_ner(tokens, pen.metadata['snt']))
     # POSTAG
     pen.metadata['pos_tags'] = json.dumps(process_postag(tokens))
     # LEMMA

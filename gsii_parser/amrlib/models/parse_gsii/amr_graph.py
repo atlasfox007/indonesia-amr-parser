@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 def read_file(source):
     # read preprocessed amr file
     token, lemma, pos, ner, amrs = [], [], [], [], []
-    graphs = penman.load(source, encoding='utf-8')
+    graphs = penman.load(source)
     logger.info('read from %s, %d amrs' % (source, len(graphs)))
     for g in graphs:
         # Load the metadata

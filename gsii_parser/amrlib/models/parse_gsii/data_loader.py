@@ -133,7 +133,7 @@ def batchify(data, vocabs, unk_rate=0.):
 # Note that source can be a filename or a file-type object (ie.. open file or io.StringIO)
 # GPU_SIZE = 12000 # okay for 8G memory
 class DataLoader(object):
-    def __init__(self, vocabs, source, batch_size, for_train, gpu_size=3000):
+    def __init__(self, vocabs, source, batch_size, for_train, gpu_size=24000):
         self.data = []
         bert_tokenizer = vocabs.get('bert_tokenizer', None)
         for amr, token, lemma, pos, ner in zip(*read_file(source)):
