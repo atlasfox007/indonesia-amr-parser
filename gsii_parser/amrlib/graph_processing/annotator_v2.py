@@ -39,7 +39,6 @@ start_method = None
 # Annotate a file with multiple AMR entries and save it to the specified location
 def annotate_file(indir, infn, outdir, outfn):
     inpath = os.path.join(indir, infn)
-    print(indir)
     entries = load_amr_entries(inpath)
 
 
@@ -78,7 +77,7 @@ def _process_penman(pen : penman.Graph):
     tokens = process_token(pen.metadata['snt'])
     pen.metadata['tokens']   = json.dumps(tokens)
     # NER
-    pen.metadata['ner_tags'] = json.dumps(process_ner(tokens))
+    pen.metadata['ner_tags'] = json.dumps(process_ner(tokens, pen.metadata['snt']))
     # POSTAG
     pen.metadata['pos_tags'] = json.dumps(process_postag(tokens))
     # LEMMA
@@ -88,20 +87,27 @@ def _process_penman(pen : penman.Graph):
 def process_token(inp : str) -> List[str]:
     return tokenizer_model.tokenize(inp)
 
-def process_ner(inp : List[str]) -> List[str]:
+def process_ner(inp_token : List[str], input_words : str) -> List[str]:
     global ner_pipeline
 
-    ner_results = []
 
-    for word in inp:
-        ner_res = ner_pipeline(word)
+    ner_pipeline_result = ner_pipeline(input_words)
 
-        if(len(ner_res) < 1):
-            ner_results.append('O')
+    ner_dict = {}
+
+    for i in range(len(ner_pipeline_result)):
+        ner_dict[ner_pipeline_result[i]['word']] = ner_pipeline_result[i]['entity']
+    
+    ner_result = []
+
+    for word in inp_token:
+        word_check = word.lower()
+        if(word_check in ner_dict):
+            ner_result.append(ner_dict[word_check])
         else:
-            ner_results.append(ner_res[0]["entity"])
+            ner_result.append('O') # Not present in ner_pipeline_result
 
-    return ner_results
+    return ner_result
 
 def process_postag(inp : List[str]) -> List[str] :
     global postag_model

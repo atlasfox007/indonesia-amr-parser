@@ -20,16 +20,33 @@ print(input_words)
 # TODO : the ner results parsing logic
 ner_pipeline = pipeline("token-classification", model="cahya/bert-base-indonesian-NER")
 
-ner_results = []
 
+ner_pipeline_result = ner_pipeline(input_words_1)
+ner_dict = {}
+
+
+# Turn the ner_pipeline_result to dictionary
+for i in range(len(ner_pipeline_result)):
+    ner_dict[ner_pipeline_result[i]['word']] = ner_pipeline_result[i]['entity']
+
+ner_result = []
 for word in input_words:
-    ner_res = ner_pipeline(word)
-
-    if(len(ner_res) < 1):
-        ner_results.append('O')
+    word_check = word.lower()
+    if(word_check in ner_dict):
+        ner_result.append(ner_dict[word_check])
     else:
-        ner_results.append(ner_res[0]["entity"])
-print(ner_results)
+        ner_result.append('O') # Not present in ner_pipeline_result
+
+print(ner_result)
+
+# for word in input_words:
+#     ner_res = ner_pipeline(word)
+
+#     if(len(ner_res) < 1):
+#         ner_results.append('O')
+#     else:
+#         ner_results.append(ner_res[0]["entity"])
+# print(ner_results)
 ####################################################################
 
 ####################################################################
@@ -41,7 +58,6 @@ print(pos_tag_result)
 ####################################################################
 # LEMMATIZER
 lemmatizer = Lemmatizer() 
-print(input_words_1)
 lemma_result = lemmatizer.lemmatize(input_words_1)
 print(lemma_result)
 ####################################################################
