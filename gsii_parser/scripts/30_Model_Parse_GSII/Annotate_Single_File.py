@@ -17,5 +17,5 @@ if __name__ == '__main__':
     load_annotator_model("cahya/bert-base-indonesian-NER")
 
     # run the pipeline
-    for fn in (['dev.txt', 'train.txt', 'test.txt']):
+    for fn in (['amr_indo_1.txt']):
         annotate_file(indir, fn, outdir, fn + '.features')

@@ -21,6 +21,36 @@ def load_amr_entries(fname, strip_comments=True):
     entries = [e for e in entries if e]     # remove any empty entries
     return entries
 
+def load_indo_news_amr_entries(fname, strip_comments=True):
+    if fname.endswith('.gz'):
+        with gzip.open(fname, 'rb', encoding='utf-8') as f:
+            data = f.read().decode()
+    else:
+        with open(fname, encoding='utf-8') as f:
+            data = f.read()
+    
+    lines =  []
+    check = False
+    for l in data.splitlines():
+        if(l.startswith("# ::snt")): # Kompas and tempo used # ::id 
+            check = True
+            lines.append(l)
+        elif(l == '' and check == True):
+            check = False
+        else:
+            lines.append(l)
+    print(lines)
+    # Strip off non-amr header info (see start of Little Prince corpus)
+    # if strip_comments:
+    #     lines = [l for l in data.splitlines() if not (l.startswith('#') and not \
+    #              l.startswith('# ::'))]
+    data = '\n'.join(lines)
+
+    entries = data.split('\n\n')            # split via standard amr
+    entries = [e.strip() for e in entries]  # clean-up line-feeds, spaces, etc
+    entries = [e for e in entries if e]     # remove any empty entries
+    return entries
+
 
 # Split the entry into graph lines and metadata lines
 # note that line-feeds are stripped

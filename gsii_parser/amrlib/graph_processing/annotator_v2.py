@@ -10,7 +10,7 @@ from nlp_id.tokenizer import Tokenizer
 from nlp_id.postag import PosTag
 from nlp_id.lemmatizer import Lemmatizer 
 from typing import List
-from   .amr_loading import load_amr_entries
+from   .amr_loading import load_amr_entries, load_indo_news_amr_entries
 
 #  Loggger related
 logger = logging.getLogger(__name__)
@@ -50,7 +50,7 @@ start_method = "spawn"
 def annotate_file(indir, infn, outdir, outfn):
     load_annotator_model()
     inpath = os.path.join(indir, infn)
-    entries = load_amr_entries(inpath)
+    entries = load_indo_news_amr_entries(inpath)
 
 
     graphs = []
