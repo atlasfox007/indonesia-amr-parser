@@ -66,6 +66,8 @@ def annotate_file(indir, infn, outdir, outfn):
     # Windows and Mac
     else:
         for pen in tqdm(map(_process_entry, entries), total=len(entries)):
+            if(pen == None):
+                continue
             graphs.append(pen)
 
     infn = infn[:-3] if infn.endswith('.gz') else infn  # strip .gz if needed
@@ -75,7 +77,10 @@ def annotate_file(indir, infn, outdir, outfn):
 
 # Process a single AMR entry using the tokenizer and model
 def _process_entry(entry : str):
-    pen = penman.decode(entry)  # standard de-inverting penman loading process
+    try:
+        pen = penman.decode(entry)  # standard de-inverting penman loading process
+    except:
+        return
     return _process_penman(pen)
 
 def _process_penman(pen : penman.Graph):

@@ -32,14 +32,13 @@ def load_indo_news_amr_entries(fname, strip_comments=True):
     lines =  []
     check = False
     for l in data.splitlines():
-        if(l.startswith("# ::snt")): # Kompas and tempo used # ::id 
+        if(l.startswith("# ::id")): # Kompas and tempo used # ::id 
             check = True
             lines.append(l)
         elif(l == '' and check == True):
             check = False
         else:
             lines.append(l)
-    print(lines)
     # Strip off non-amr header info (see start of Little Prince corpus)
     # if strip_comments:
     #     lines = [l for l in data.splitlines() if not (l.startswith('#') and not \

@@ -7,8 +7,8 @@ if __name__ == '__main__':
     from   amrlib.utils.logging import silence_penman
 
     silence_penman()
-    indir  = '../data/AMR/LDC2020T02'
-    outdir = '../data/AMR/LDC2020T02'
+    indir  = '../data/AMR/amr_indo'
+    outdir = '../data/AMR/amr_indo'
 
     # Create the processed corpus directory
     os.makedirs(outdir, exist_ok=True)
@@ -17,5 +17,5 @@ if __name__ == '__main__':
     load_annotator_model("cahya/bert-base-indonesian-NER")
 
     # run the pipeline
-    for fn in (['amr_indo_1.txt']):
+    for fn in (['AMR_20k_indo4b_kompas_1.txt']):
         annotate_file(indir, fn, outdir, fn + '.features')
