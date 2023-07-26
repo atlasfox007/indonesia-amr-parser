@@ -1,23 +1,42 @@
+import os
 from google.cloud import storage
 
-def download_files_from_bucket(bucket_name, source_blob_names, destination_folder):
+keyfile_path = 'arboreal-timer-393614-6e37b45ee8d6.json'
+
+# Set the environment variable
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = keyfile_path
+
+def download_folder(bucket_name, folder_path, local_directory_path):
     client = storage.Client()
     bucket = client.bucket(bucket_name)
 
-    for source_blob_name in source_blob_names:
-        blob = bucket.blob(source_blob_name)
+    # List all objects in the folder
+    blobs = list(bucket.list_blobs(prefix=folder_path))
 
-        # Replace 'destination_folder' with the local directory where you want to save the downloaded files
-        destination_path = os.path.join(destination_folder, os.path.basename(source_blob_name))
+    # Download each file to the local directory
+    for blob in blobs:
+        # Get the relative path of the file inside the folder
+        relative_file_path = blob.name[len(folder_path):]
 
-        # Download the file to the specified destination
-        blob.download_to_filename(destination_path)
-        print(f'Downloaded {source_blob_name} to {destination_path}')
+        # If the blob is a directory, skip downloading
+        if relative_file_path.endswith('/'):
+            continue
 
-if __name__ == '__main__':
-    # Replace the following variables with your specific bucket and file details
-    BUCKET_NAME = 'your_bucket_name'
-    SOURCE_BLOB_NAMES = ['file1.txt', 'folder/file2.txt']  # Replace with the list of files you want to download
-    DESTINATION_FOLDER = '/path/to/your/local/destination/folder'  # Replace with your local destination folder
+        # Get the local file path for downloading
+        local_file_path = os.path.join(local_directory_path, relative_file_path)
 
-    download_files_from_bucket(BUCKET_NAME, SOURCE_BLOB_NAMES, DESTINATION_FOLDER)
+        # Create directories if they don't exist
+        os.makedirs(os.path.dirname(local_file_path), exist_ok=True)
+
+        # Download the file to the local directory
+        blob.download_to_filename(local_file_path)
+
+# Replace with your Google Cloud Storage bucket name, folder path, and local path
+bucket_name = "amr-ta2-bucket"
+folder_path = "indonesia-silver-dataset/"
+local_directory_path = "./folder1"
+
+# Remove trailing slashes from the local_directory_path
+local_directory_path = os.path.normpath(local_directory_path)
+
+download_folder(bucket_name, folder_path, local_directory_path)

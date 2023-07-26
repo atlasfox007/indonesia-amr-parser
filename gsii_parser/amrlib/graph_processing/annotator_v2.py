@@ -93,7 +93,7 @@ def _process_penman(pen : penman.Graph):
     tokens = process_token(pen.metadata['snt'])
     pen.metadata['tokens']   = json.dumps(tokens)
     # NER
-    # pen.metadata['ner_tags'] = json.dumps(process_ner(tokens, pen.metadata['snt']))
+    pen.metadata['ner_tags'] = json.dumps(process_ner(tokens, pen.metadata['snt']))
     # POSTAG
     pen.metadata['pos_tags'] = json.dumps(process_postag(tokens))
     # LEMMA
@@ -135,5 +135,12 @@ def process_postag(inp : List[str]) -> List[str] :
 
 def process_lemma(inp : List[str]) -> List[str] :
     global lemmatizer_model
-    lemma_result = lemmatizer_model.lemmatize(" ".join(inp))
-    return lemma_result.split()
+    lemma_result = []
+
+    for word in inp:
+        lm = lemmatizer_model.lemmatize(word)
+        if(len(lm) < 1):
+            lemma_result.append(word)
+        else:
+            lemma_result.append(lm)
+    return lemma_result

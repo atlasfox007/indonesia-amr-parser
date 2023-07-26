@@ -5,8 +5,8 @@ from   amrlib.graph_processing.amr_loading_raw import load_raw_amr
 
 
 if __name__ == '__main__':
-    base_dir = '../data/AMR/amr_annotation_3.0/data/amrs/split'
-    out_dir  = '../data/AMR/LDC2020T02'
+    base_dir = '../data/AMR/amr_silver_indonesia/split'
+    out_dir  = '../data/AMR/amr_silver_indonesia'
 
     os.makedirs(out_dir, exist_ok=True)
 

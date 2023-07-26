@@ -2,3 +2,6 @@ data
 bert-base-cased
 pretrained_model
 data.zip
+pretrained_model_indonesia
+indobert-base-p1
+indobert-base-p2

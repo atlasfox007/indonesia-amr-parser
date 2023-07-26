@@ -57,7 +57,14 @@ pos_tag_result = [x[1] for x in pos_tag]
 print(pos_tag_result)
 ####################################################################
 # LEMMATIZER
-lemmatizer = Lemmatizer() 
-lemma_result = lemmatizer.lemmatize(input_words_1)
+lemmatizer = Lemmatizer()
+lemma_result = []
+
+for word in input_words:
+    lm = lemmatizer.lemmatize(word)
+    if(len(lm) < 1):
+        lemma_result.append(word)
+    else:
+        lemma_result.append(lm)
 print(lemma_result)
 ####################################################################
