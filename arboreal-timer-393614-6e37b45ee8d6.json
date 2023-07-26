@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "arboreal-timer-393614",
+  "private_key_id": "6e37b45ee8d62cff1bf1501ee5a4f35ce7b64067",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQChvkyQyfqmA/rw\neuZ24mxvwmrzUZmMB9a8a615x7HeGuyIx+ueYo5t+tUDVezO2qYznkxdISwOy3zS\nOpf0l2dfR8zV/+zp62AQQjbmE/HhfhvdH8yXgLzm3hTKzSM6FWIaRzcju2Y+zCLW\n22C0z0BoFXZfESKfuXSPHXAQk7vuwAT5MH/J06PTtVdRTvYN2n3APHnzyVHUZuLS\nyQtzzrQZICUzUjUTTIHrjYAvpfowCmBnhrG+VN5xqxFuCUP49aTViNJ96q2J9F7R\nJOey8vigEitHxGRXQOWywg/hWzuzaWAzWBuR/9sUoKZmNiJpkxLhQ2KUA3Yxep1w\njXs1m4UVAgMBAAECggEACdzHi2lIJ4OvnfvzKJr232ZcoiM+zcs+kfUDj3JDS2vw\nh131ZTjU6X+K1Ji9MgHNckammQ59mBYFXEZRX2CKCkUfst7XoeMwfjKjaVUcVyfF\nktlZCYCX7tXqMPw1jS73m+rtbE2FgbJt32m3abRc1NvrgLF+nycDpKRitx1jBL7y\nMTCM8qR9Z8o2P4OrORq24c/9SGlCbepqfiyowORjS7Rz6jSFhu45VeFSrcbCxvlK\ntLGL7WjCODO59CRrn71908HpsNUEy1Jsak5M4mzfNOBu4NCET8ypRfecQuO629pY\nJYmj/2JzB9fgtqFL5yestrlmjhWsRQx5ZgrRO7kQoQKBgQDQqrEdp76YedMdxsZv\nz3UciFLQ9W3/OOs3J6b9HWkw/c89pA31lpccaAExyFftJdPVRGmDZ2JuZnRQJXP5\nnxgUGpA0eOIK7N/hYm0OrKqAGgJvVzFT0LD75/ALdJuOLhjJ3DKWt4DXLx+LjppH\nNELVGpN0nToiPAi5tP+S0zAo8QKBgQDGbsIgYhKmTvFqYlcQgLQcsT4Y/WzVFBlo\nANDqi5Rs0W05AOpjE4klJZeGHrH2QEQJzFOgHZFwwvz2L2+7wDI32b96Ul/bfSyY\nCQn2VuuCX4p7FURbZ2BtrP8fi0vA5N7mUWUImBmUVhDoivgqqH2omCOo8FVrD1/G\nNb+PHME+ZQKBgE2eUMfRL+qT1l4LJKFOsCdu5i9oPARl7cjUbR9WI1zf7IjnT3H9\nFDSy007rURmbqpJ4Ii+I82pRng56AAvojBJeVynNlXeu6RBzhlGhFMMV6bX03xpo\nVI0/l2ELfRmEOCBOUlsR41En7DoDT4wQ+pM+kX8dRRSa9DvwAelhuVZhAoGAVQCZ\nNBoO9yMWE4Zw2WbowOnEOhxFhLmJcJ344KBOQpcr/KFBxpNVyo3h7Ng1T9GT08at\nhAdmiDFe/26upHTejkI+3f1vhqyGb9JfbCEr3btjrPodQDJ2gkT7PN4E42qneW4g\no5/URVDhCVyOlmd6/L+/dt0NGkGJu3TGzF17AmkCgYBkALzU64l0UOYQGvOB8sar\nI7Xrzv6WxyffJvaEi/r3Qqix+qyWVxn1XJULM+4VTzjyve1HIRzZ4JH2CkEm+NDy\nshHQE42SUmnad04/FaX6JQQ+/n2UBJi7cM0s5e3s2m0AI+I0ik1tQ6Sfw+jZqNRC\nyfnjc/JntdAiB9N5vMvhGQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "service-1@arboreal-timer-393614.iam.gserviceaccount.com",
+  "client_id": "110587466186274728181",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/service-1%40arboreal-timer-393614.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
