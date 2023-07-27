@@ -52,7 +52,6 @@ def annotate_file(indir, infn, outdir, outfn):
     inpath = os.path.join(indir, infn)
     entries = load_indo_news_amr_entries(inpath)
 
-
     graphs = []
     global start_method
     if start_method is not None:
@@ -95,7 +94,7 @@ def _process_penman(pen : penman.Graph):
     # NER
     pen.metadata['ner_tags'] = json.dumps(process_ner(tokens, pen.metadata['snt']))
     # POSTAG
-    pen.metadata['pos_tags'] = json.dumps(process_postag(tokens))
+    pen.metadata['pos_tags'] = json.dumps(process_postag(pen.metadata['snt']))
     # LEMMA
     pen.metadata['lemmas'] = json.dumps(process_lemma(tokens))
     return pen
@@ -125,9 +124,9 @@ def process_ner(inp_token : List[str], input_words : str) -> List[str]:
 
     return ner_result
 
-def process_postag(inp : List[str]) -> List[str] :
+def process_postag(input_word : str) -> List[str] :
     global postag_model
-    postag = postag_model.get_pos_tag(" ".join(inp))
+    postag = postag_model.get_pos_tag(input_word)
 
     postag_result = [x[1] for x in postag]
     return postag_result
