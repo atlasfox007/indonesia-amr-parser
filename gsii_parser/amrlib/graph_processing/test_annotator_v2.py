@@ -9,7 +9,7 @@ from nlp_id.lemmatizer import Lemmatizer
 
 id_tokenizer = Tokenizer()
 
-input_words_1 = "Otoritas Paris, Belgium, dan Belanda"
+input_words_1 = "Otoritas Paris! Belgium, dan Belanda"
 input_words = id_tokenizer.tokenize(input_words_1)
 print(input_words)
 
