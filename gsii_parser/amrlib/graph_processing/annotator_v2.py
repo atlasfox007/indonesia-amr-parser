@@ -28,22 +28,33 @@ def load_annotator_model(model_name=None):
     ner_model_name = model_name
 
     if ner_pipeline is None:
-        ner_pipeline = pipeline("token-classification", model=ner_model_name)
-
+        import pickle
+        with open("../model_dump/ner_model_pipeline.pkl", 'rb') as f:
+            ner_pipeline = pickle.load(f)
+        # ner_pipeline = pipeline("token-classification", model=ner_model_name)
     if tokenizer_model is None:
-        tokenizer_model = Tokenizer()
+        import pickle
+        with open("../model_dump/tokenizer_model.pkl", 'rb') as f:
+            tokenizer_model = pickle.load(f)
+        # tokenizer_model = Tokenizer()
 
     if postag_model is None:
-        postag_model = PosTag()
+        import pickle
+        with open("../model_dump/postag_model.pkl", 'rb') as f:
+            postag_model = pickle.load(f)
+        # postag_model = PosTag()
     
     if lemmatizer_model is None:
-        lemmatizer_model = Lemmatizer()
+        import pickle
+        with open("../model_dump/lemma_model.pkl", 'rb') as f:
+            lemmatizer_model = pickle.load(f)
+        # lemmatizer_model = Lemmatizer()
 
 # Default set of tags to keep when annotating the AMR. Throw all others away
 # To keep all, redefine this to None
 keep_tags = set(['id', 'snt'])
 
-# Start Method variable
+# Start Method variable (can be spawn, fork)
 start_method = "spawn"
 
 # Annotate a file with multiple AMR entries and save it to the specified location
@@ -59,7 +70,7 @@ def annotate_file(indir, infn, outdir, outfn):
         start_method = None
     # Unix platforms
     if multiprocessing.get_start_method() == 'fork':
-        with multiprocessing.Pool() as pool:
+        with multiprocessing.Pool(processes=8) as pool:
             for pen in tqdm(pool.imap(_process_entry, entries), total=len(entries)):
                 graphs.append(pen)
     # Windows and Mac

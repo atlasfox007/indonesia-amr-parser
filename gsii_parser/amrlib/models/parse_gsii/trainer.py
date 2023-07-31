@@ -54,7 +54,6 @@ def run_training(args, ls):
     device = torch.device(args.device)
     # Create the model
     ls.print('Setting up the model')
-    print("PRETRAINED FILE : ",args.pretrained_file)
     model = Parser(vocabs,
             args.word_char_dim, args.word_dim, args.pos_dim, args.ner_dim,
             args.concept_char_dim, args.concept_dim,
