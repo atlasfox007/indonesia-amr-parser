@@ -5,7 +5,7 @@ import penman
 import torch
 import multiprocessing
 from tqdm import tqdm
-from transformers import BertTokenizer, BertForTokenClassification, pipeline
+from transformers import AutoModelForTokenClassification, AutoTokenizer, pipeline
 from nlp_id.tokenizer import Tokenizer
 from nlp_id.postag import PosTag
 from nlp_id.lemmatizer import Lemmatizer 
@@ -27,24 +27,35 @@ def load_annotator_model(model_name=None):
     
     ner_model_name = model_name
 
-    if ner_pipeline is None:
-        import pickle
-        with open("../model_dump/ner_model_pipeline.pkl", 'rb') as f:
-            ner_pipeline = pickle.load(f)
-        # ner_pipeline = pipeline("token-classification", model=ner_model_name)
-    if tokenizer_model is None:
+    if ner_pipeline is not None:
+        return
+    else:
+        # import pickle
+        # with open("../model_dump/ner_model_pipeline.pkl", 'rb') as f:
+        #     ner_pipeline = pickle.load(f)
+        tokenizer = AutoTokenizer.from_pretrained("cahya/bert-base-indonesian-NER")
+        model = AutoModelForTokenClassification.from_pretrained("cahya/bert-base-indonesian-NER")
+        ner_pipeline = pipeline("token-classification", model=model, tokenizer=tokenizer,device=0)
+
+    if tokenizer_model is not None:
+        return
+    else:
         import pickle
         with open("../model_dump/tokenizer_model.pkl", 'rb') as f:
             tokenizer_model = pickle.load(f)
         # tokenizer_model = Tokenizer()
 
-    if postag_model is None:
+    if postag_model is not None:
+        return
+    else:
         import pickle
         with open("../model_dump/postag_model.pkl", 'rb') as f:
             postag_model = pickle.load(f)
         # postag_model = PosTag()
     
-    if lemmatizer_model is None:
+    if lemmatizer_model is not None:
+        return
+    else:
         import pickle
         with open("../model_dump/lemma_model.pkl", 'rb') as f:
             lemmatizer_model = pickle.load(f)
@@ -70,7 +81,7 @@ def annotate_file(indir, infn, outdir, outfn):
         start_method = None
     # Unix platforms
     if multiprocessing.get_start_method() == 'fork':
-        with multiprocessing.Pool(processes=8) as pool:
+        with multiprocessing.Pool(processes=4) as pool:
             for pen in tqdm(pool.imap(_process_entry, entries), total=len(entries)):
                 graphs.append(pen)
     # Windows and Mac

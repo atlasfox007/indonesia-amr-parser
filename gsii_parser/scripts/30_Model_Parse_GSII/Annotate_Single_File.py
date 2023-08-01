@@ -14,7 +14,7 @@ if __name__ == '__main__':
     os.makedirs(outdir, exist_ok=True)
 
     # Load the spacy model with the desired model
-    # load_annotator_model("cahya/bert-base-indonesian-NER")
+    load_annotator_model("cahya/bert-base-indonesian-NER")
 
     # run the pipeline
     for fn in (['dev_t.txt']):
