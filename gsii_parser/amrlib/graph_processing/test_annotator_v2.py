@@ -9,7 +9,7 @@ from nlp_id.lemmatizer import Lemmatizer
 
 id_tokenizer = Tokenizer()
 
-input_words_1 = "Otoritas Paris! Belgium, dan Belanda"
+input_words_1 = "Saya sedang belajar mengendarai mobil"
 input_words = id_tokenizer.tokenize(input_words_1)
 print(input_words)
 
@@ -52,7 +52,8 @@ print(ner_result)
 ####################################################################
 # POS TAGGER
 postagger = PosTag()
-pos_tag = postagger.get_pos_tag(" ".join(input_words))
+pos_tag = postagger.get_pos_tag(input_words)
+print(pos_tag)
 pos_tag_result = [x[1] for x in pos_tag]
 print(pos_tag_result)
 ####################################################################

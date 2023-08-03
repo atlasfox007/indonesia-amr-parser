@@ -5,7 +5,6 @@ from amrlib.models.parse_gsii import trainer
 from amrlib.utils.log_splitter import LogSplitter
 
 
-# Train th emodel
 if __name__ == '__main__':
     setup_logging(logfname='logs/train_gsii.log', level=WARN)
     args = Config.load('configs/model_parse_gsii.json')

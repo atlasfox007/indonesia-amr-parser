@@ -69,10 +69,13 @@ keep_tags = set(['id', 'snt'])
 start_method = "spawn"
 
 # Annotate a file with multiple AMR entries and save it to the specified location
-def annotate_file(indir, infn, outdir, outfn):
+def annotate_file(indir, infn, outdir, outfn, amr_type=None):
     load_annotator_model()
     inpath = os.path.join(indir, infn)
-    entries = load_indo_news_amr_entries(inpath)
+    if(amr_type == "gold"):
+        entries = load_amr_entries(inpath)
+    else:
+        entries = load_indo_news_amr_entries(inpath)
 
     graphs = []
     global start_method
@@ -105,10 +108,9 @@ def _process_entry(entry : str):
     return _process_penman(pen)
 
 def _process_penman(pen : penman.Graph):
-    # Filter out old tags and add the tags from SpaCy parse
     global keep_tags
     if keep_tags is not None:
-        pen.metadata = {k:v for k,v in pen.metadata.items() if k in keep_tags}  # filter extra tags
+        pen.metadata = {k:v for k,v in pen.metadata.items() if k in keep_tags} 
     
     # Tokenization
     tokens = process_token(pen.metadata['snt'])

@@ -6,10 +6,10 @@ if __name__ == '__main__':
     
     setup_logging(logfname='logs/generate.log', level=WARN)
     device     = 'cuda:0'
-    model_dir  = '../pretrained_model'
-    model_fn   = 'epoch15.pt'
-    data_dir   = '../test_input'
-    test_data  = 'test_input.txt.raw.features'
+    model_dir  = '../pretrained_model_indonesia'
+    model_fn   = 'epoch100.pt'
+    data_dir   = '../data/AMR/amr_gold_indonesia'
+    test_data  = 'amr_simple_amany_v2_gold.txt.features'
     out_fn     = model_fn + '.test_generated'
 
     infer = Inference(model_dir, model_fn, device=device)

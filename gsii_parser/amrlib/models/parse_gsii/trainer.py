@@ -14,7 +14,6 @@ from   .utils import move_to_device
 from   .bert_utils import BertEncoderTokenizer, BertEncoder
 from   .inference import Inference
 
-os.environ["CUDA_MAX_SPLIT_SIZE"] = "512"
 # LR scheduler = lr_scale(1.0) * 1/sqrt(512) * min(1/sqrt(batchnum), (batchnum/warmup)*1/sqrt(warmup))
 # This gives a curve that rises for "warmup_steps" (step ==> count of the total number of batches)
 # and then falls slowly after that
