@@ -79,7 +79,6 @@ def annotate_file(indir, infn, outdir, outfn, amr_type=None):
     else:
         entries = load_indo_news_amr_entries(inpath)
 
-    print(entries, end = '\n')
 
     graphs = []
     global start_method
@@ -117,10 +116,7 @@ def _process_penman(pen : penman.Graph):
         pen.metadata = {k:v for k,v in pen.metadata.items() if k in keep_tags} 
     
     # Tokenization, with checking if amr representation is a
-    try:
-        tokens = process_token(pen.metadata['snt'])
-    except:
-        print(pen)
+    tokens = process_token(pen.metadata['snt'])
     pen.metadata['tokens']   = json.dumps(tokens)
     # NER
     pen.metadata['ner_tags'] = json.dumps(process_ner(tokens, pen.metadata['snt']))
