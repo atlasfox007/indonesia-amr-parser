@@ -10,7 +10,7 @@ from nlp_id.tokenizer import Tokenizer
 from nlp_id.postag import PosTag
 from nlp_id.lemmatizer import Lemmatizer 
 from typing import List
-from   .amr_loading import load_amr_entries, load_indo_news_amr_entries
+from   .amr_loading import load_amr_entries, load_indo_news_amr_entries, load_simple_amr_indonesia
 
 #  Loggger related
 logger = logging.getLogger(__name__)
@@ -74,8 +74,12 @@ def annotate_file(indir, infn, outdir, outfn, amr_type=None):
     inpath = os.path.join(indir, infn)
     if(amr_type == "gold"):
         entries = load_amr_entries(inpath)
+    elif(amr_type == "gold_simple"):
+        entries = load_simple_amr_indonesia(inpath)
     else:
         entries = load_indo_news_amr_entries(inpath)
+
+    print(entries, end = '\n')
 
     graphs = []
     global start_method
@@ -112,8 +116,11 @@ def _process_penman(pen : penman.Graph):
     if keep_tags is not None:
         pen.metadata = {k:v for k,v in pen.metadata.items() if k in keep_tags} 
     
-    # Tokenization
-    tokens = process_token(pen.metadata['snt'])
+    # Tokenization, with checking if amr representation is a
+    try:
+        tokens = process_token(pen.metadata['snt'])
+    except:
+        print(pen)
     pen.metadata['tokens']   = json.dumps(tokens)
     # NER
     pen.metadata['ner_tags'] = json.dumps(process_ner(tokens, pen.metadata['snt']))

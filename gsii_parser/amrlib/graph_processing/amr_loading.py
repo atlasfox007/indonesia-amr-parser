@@ -2,8 +2,6 @@ import re
 import gzip
 
 
-# Loading AMR entries with this code is faster than using penman.load() and this was progress
-# can be show when processing them.
 def load_amr_entries(fname, strip_comments=True):
     if fname.endswith('.gz'):
         with gzip.open(fname, 'rb', encoding='utf-8') as f:
@@ -11,17 +9,13 @@ def load_amr_entries(fname, strip_comments=True):
     else:
         with open(fname, encoding='utf-8') as f:
             data = f.read()
-    # Strip off non-amr header info (see start of Little Prince corpus)
-    if strip_comments:
-        lines = [l for l in data.splitlines() if not (l.startswith('#') and not \
-                 l.startswith('# ::'))]
-        data = '\n'.join(lines)
+
     entries = data.split('\n\n')            # split via standard amr
     entries = [e.strip() for e in entries]  # clean-up line-feeds, spaces, etc
     entries = [e for e in entries if e]     # remove any empty entries
     return entries
 
-def load_indo_news_amr_entries(fname, strip_comments=True):
+def load_indo_news_amr_entries(fname):
     if fname.endswith('.gz'):
         with gzip.open(fname, 'rb', encoding='utf-8') as f:
             data = f.read().decode()
@@ -50,6 +44,35 @@ def load_indo_news_amr_entries(fname, strip_comments=True):
     entries = [e for e in entries if e]     # remove any empty entries
     return entries
 
+def load_simple_amr_indonesia(fname):
+    if fname.endswith('.gz'):
+        with gzip.open(fname, 'rb', encoding='utf-8') as f:
+            data = f.read().decode()
+    else:
+        with open(fname, encoding='utf-8') as f:
+            data = f.read()
+    
+    lines =  []
+    check = 0
+    for l in data.splitlines():
+        l = l.strip(" ")
+        if(l.startswith("# ::id") or l.startswith("# ::snt")):
+            check = 0
+            lines.append(l)
+        elif(l == '' and check == 0):
+            continue
+        elif(l == '' and check > 0) :
+            lines.append(l)
+        else:
+            check += 1
+            lines.append(l)
+
+    data = '\n'.join(lines)
+
+    entries = data.split('\n\n')            # split via standard amr
+    entries = [e.strip() for e in entries]  # clean-up line-feeds, spaces, etc
+    entries = [e for e in entries if e]     # remove any empty entries
+    return entries
 
 # Split the entry into graph lines and metadata lines
 # note that line-feeds are stripped
