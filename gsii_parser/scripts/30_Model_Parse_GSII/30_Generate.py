@@ -5,9 +5,9 @@ if __name__ == '__main__':
     from   amrlib.models.parse_gsii.inference import Inference
     
     setup_logging(logfname='logs/generate.log', level=WARN)
-    device     = 'cuda:0'
+    device     = 'cpu'
     model_dir  = '../pretrained_model_indonesia_without_silver'
-    model_fn   = 'epoch10.pt'
+    model_fn   = 'epoch50.pt'
     data_dir   = '../data/AMR/amr_gold_indonesia'
     test_data  = 'amr_simple_test.txt.features'
     out_fn     = model_fn + '.test_generated_gold'
