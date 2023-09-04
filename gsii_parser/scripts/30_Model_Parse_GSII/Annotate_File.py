@@ -3,8 +3,8 @@
 if __name__ == '__main__':
     import setup_run_dir    # this import tricks script to run from 2 levels up
     import os
-    from   amrlib.graph_processing.annotator_v2 import annotate_file, load_annotator_model
-    from   amrlib.utils.logging import silence_penman
+    from   src.graph_processing.annotator_v2 import annotate_file, load_annotator_model
+    from   src.utils.logging import silence_penman
 
     silence_penman()
     indir  = '../data/AMR/amr_gold_indonesia'

@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 import setup_run_dir    # this import tricks script to run from 2 levels up
 import os
-from   amrlib.utils.logging import silence_penman, setup_logging, INFO, WARN
-from   amrlib.graph_processing.wiki_adder_spotlight import WikiAdderSpotlight
+from   src.utils.logging import silence_penman, setup_logging, INFO, WARN
+from   src.graph_processing.wiki_adder_spotlight import WikiAdderSpotlight
 
 
 if __name__ == '__main__':

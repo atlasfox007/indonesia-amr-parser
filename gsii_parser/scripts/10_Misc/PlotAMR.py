@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import setup_run_dir    # this import tricks script to run from 2 levels up
-from   amrlib.graph_processing.amr_plot import AMRPlot
-from   amrlib.graph_processing.amr_loading import load_amr_entries
+from   src.graph_processing.amr_plot import AMRPlot
+from   src.graph_processing.amr_loading import load_amr_entries
 
 
 if __name__ == '__main__':

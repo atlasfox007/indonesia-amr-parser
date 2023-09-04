@@ -1,7 +1,7 @@
 import setup_run_dir    # this import tricks script to run from 2 levels up
 import os
-from   amrlib.graph_processing.annotator import annotate_file, load_spacy
-from   amrlib.utils.logging import silence_penman
+from   src.graph_processing.annotator import annotate_file, load_spacy
+from   src.utils.logging import silence_penman
 
 
 # Annotate the raw AMR entries with SpaCy to add the required ::tokens and ::lemmas fields

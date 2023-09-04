@@ -1,6 +1,6 @@
 import setup_run_dir    # this import tricks script to run from 2 levels up
-from   amrlib.graph_processing.wiki_remover import wiki_remove_file
-from   amrlib.utils.logging import silence_penman
+from   src.graph_processing.wiki_remover import wiki_remove_file
+from   src.utils.logging import silence_penman
 
 
 # Remove the :wiki tags from the graphs since we don't want to try the model

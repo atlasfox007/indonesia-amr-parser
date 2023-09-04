@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import setup_run_dir    # Set the working directory and python sys.path to 2 levels above
 import os
-from   amrlib.graph_processing.amr_loading_raw import load_raw_amr
+from   src.graph_processing.amr_loading_raw import load_raw_amr
 
 
 if __name__ == '__main__':

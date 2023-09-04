@@ -1,8 +1,8 @@
 import setup_run_dir    # this import tricks script to run from 2 levels up
-from amrlib.utils.logging import setup_logging, WARN
-from amrlib.utils.config import Config
-from amrlib.models.parse_gsii import trainer
-from amrlib.utils.log_splitter import LogSplitter
+from src.utils.logging import setup_logging, WARN
+from src.utils.config import Config
+from src.models.parse_gsii import trainer
+from src.utils.log_splitter import LogSplitter
 
 
 if __name__ == '__main__':

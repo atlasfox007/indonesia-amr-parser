@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import setuptools
-from   amrlib import __version__
+from   src import __version__
 
 # To create the pypi distribution and upload to pypi do..
 #   ./setup.py sdist bdist_wheel
