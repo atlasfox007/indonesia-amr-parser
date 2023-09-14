@@ -10,7 +10,7 @@ if __name__ == '__main__':
     setup_logging(level=WARN)
     silence_penman()
 
-    with open('amrlib/amr_view/amr_view.json') as f:
+    with open('src/amr_view/amr_view.json') as f:
         config = json.load(f)
 
     app = QApplication([])

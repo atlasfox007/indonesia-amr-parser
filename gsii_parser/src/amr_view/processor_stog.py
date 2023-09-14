@@ -7,7 +7,7 @@ from   ..graph_processing.annotator import load_spacy
 
 logger = logging.getLogger(__name__)
 
-# Setence to Graph processor
+# Sentence to Graph processor
 class ProcessorSTOG(object):
     def __init__(self, config, disabled=False):
         self.model_dir      = config['stog_model_dir']

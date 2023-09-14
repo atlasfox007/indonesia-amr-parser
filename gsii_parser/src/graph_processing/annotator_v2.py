@@ -68,6 +68,10 @@ keep_tags = set(['id', 'snt'])
 # Start Method variable (can be spawn, fork)
 start_method = "spawn"
 
+def annotate_graph(entry):
+    load_annotator_model()
+    return _process_entry(entry)
+
 # Annotate a file with multiple AMR entries and save it to the specified location
 def annotate_file(indir, infn, outdir, outfn, amr_type=None):
     load_annotator_model()

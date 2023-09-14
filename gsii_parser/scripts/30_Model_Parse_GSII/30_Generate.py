@@ -5,12 +5,12 @@ if __name__ == '__main__':
     from   src.models.parse_gsii.inference import Inference
     
     setup_logging(logfname='logs/generate.log', level=WARN)
-    device     = 'cpu'
+    device     = 'cuda:0'
     model_dir  = '../pretrained_model_indonesia'
     model_fn   = 'epoch140.pt'
-    data_dir   = '../data/AMR/amr_silver_indonesia'
-    test_data  = 'test.txt.features'
-    out_fn     = model_fn + '.test_generated_silver'
+    data_dir   = '../data/AMR/amr_gold_indonesia'
+    test_data  = 'amr_simple_test.txt.features'
+    out_fn     = model_fn + '.test_generated_gold'
 
     infer = Inference(model_dir, model_fn, device=device)
     infer.reparse_annotated_file(data_dir, test_data, model_dir, out_fn)

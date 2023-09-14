@@ -15,7 +15,7 @@ from   .utils import move_to_device
 from   .bert_utils import BertEncoderTokenizer, BertEncoder
 from   ..inference_bases import STOGInferenceBase
 from   ...graph_processing.amr_loading import load_amr_entries, split_amr_meta
-from   ...graph_processing.annotator import annotate_graph
+from   ...graph_processing.annotator_v2 import annotate_graph
 from   ...evaluate.smatch_enhanced import compute_smatch
 from   ...utils.config import Config
 

@@ -8,3 +8,4 @@ indobert-base-p2
 model_dump
 pretrained_model_indonesia_without_silver
 Miniconda3-py310_23.5.2-0-Linux-x86_64.sh
+pretrained_model_indonesia_gold_silver_combined
