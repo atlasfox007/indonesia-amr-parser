@@ -13,7 +13,7 @@ if __name__ == '__main__':
     # Create the processed corpus directory
     os.makedirs(outdir, exist_ok=True)
 
-    # Load the spacy model with the desired model
+    # Load the model 
     load_annotator_model("cahya/bert-base-indonesian-NER")
 
     # run the pipeline

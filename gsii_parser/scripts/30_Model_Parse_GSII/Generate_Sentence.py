@@ -10,7 +10,7 @@ if __name__ == '__main__':
     model_fn   = 'epoch140.pt'
     data_dir   = '../data/AMR/amr_gold_indonesia'
     test_data  = 'amr_simple_test.txt.features'
-    out_fn     = model_fn + '.test_generated_gold'
+    out_fn     = model_fn + '.test_generated_singlesentence'
 
     infer = Inference(model_dir, model_fn, device=device)
     l = infer.parse_sents(["Halo nama saya adalah Bima"])
