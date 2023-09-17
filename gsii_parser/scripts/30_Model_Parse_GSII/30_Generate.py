@@ -8,9 +8,9 @@ if __name__ == '__main__':
     device     = 'cuda:0'
     model_dir  = '../pretrained_model_indonesia'
     model_fn   = 'epoch140.pt'
-    data_dir   = '../data/AMR/amr_gold_indonesia'
-    test_data  = 'amr_simple_test.txt.features'
-    out_fn     = model_fn + '.test_generated_gold'
+    data_dir   = '../data/AMR/amr_silver_indonesia'
+    test_data  = 'test.txt.features'
+    out_fn     = model_fn + '.test_generated_silver'
 
     infer = Inference(model_dir, model_fn, device=device)
     infer.reparse_annotated_file(data_dir, test_data, model_dir, out_fn)
