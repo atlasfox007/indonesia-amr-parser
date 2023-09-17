@@ -61,7 +61,7 @@ simple_sentence_dataset : [download](https://github.com/adylanrff/amr_parser/tre
 For preprocessing purpose, download this `model_dump.zip` and put it on the repository root folder
 
 `model_dump.zip` : [model_dump](https://storage.googleapis.com/amr-ta2-bucket/runpod-folder/indonesia-amr-parser/model_dump.zip)
-`indobert-base-p1` : [bert_model](https://storage.googleapis.com/amr-ta2-bucket/runpod-folder/indonesia-amr-parser/indobert-base-p2.zip)
+`indobert-base-p2` : [bert_model](https://storage.googleapis.com/amr-ta2-bucket/runpod-folder/indonesia-amr-parser/indobert-base-p2.zip)
 ## Annotate Dataset
 **TBD**
 ## Create Vocabulary
