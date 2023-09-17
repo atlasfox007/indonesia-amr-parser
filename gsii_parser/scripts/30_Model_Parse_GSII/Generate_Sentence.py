@@ -6,11 +6,8 @@ if __name__ == '__main__':
     
     setup_logging(logfname='logs/generate.log', level=WARN)
     device     = 'cuda:0'
-    model_dir  = '../pretrained_model_indonesia'
+    model_dir  = '../model'
     model_fn   = 'epoch140.pt'
-    data_dir   = '../data/AMR/amr_gold_indonesia'
-    test_data  = 'amr_simple_test.txt.features'
-    out_fn     = model_fn + '.test_generated_singlesentence'
 
     infer = Inference(model_dir, model_fn, device=device)
     l = infer.parse_sents(["Halo nama saya adalah Bima"])
