@@ -55,6 +55,12 @@ python Generate_Sentence.py
 ```
 
 # TRAINING 
+## Download dataset
+simple_sentence_dataset : [download](https://github.com/adylanrff/amr_parser/tree/master/data/model2)
+## Download model_dump
+For preprocessing purpose, download this `model_dump.zip` and put it on the repository root folder
+
+`model_dump.zip` : [model_dump](https://storage.googleapis.com/amr-ta2-bucket/runpod-folder/indonesia-amr-parser/model_dump.zip)
 ## Annotate Dataset
 **TBD**
 ## Create Vocabulary
